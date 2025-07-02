@@ -1,5 +1,1 @@
-<<<<<<< HEAD
 maramadangh
-=======
-your-github-username-here-in-conf-file
->>>>>>> assignments-base/assignment2
