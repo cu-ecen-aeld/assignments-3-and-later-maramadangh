@@ -10,14 +10,20 @@
 bool do_system(const char *cmd)
 {
 
+if(0!=system(cmd))
+{
+	return false;
+}
+else
+{
+	return true;
+}
 /*
  * TODO  add your code here
  *  Call the system() function with the command set in the cmd
  *   and return a boolean true if the system() call completed with success
  *   or false() if it returned a failure
 */
-
-    return true;
 }
 
 /**
@@ -40,6 +46,7 @@ bool do_exec(int count, ...)
     va_start(args, count);
     char * command[count+1];
     int i;
+    
     for(i=0; i<count; i++)
     {
         command[i] = va_arg(args, char *);
@@ -47,8 +54,25 @@ bool do_exec(int count, ...)
     command[count] = NULL;
     // this line is to avoid a compile warning before your implementation is complete
     // and may be removed
-    command[count] = command[count];
-
+    //command[count] = command[count];
+	if(command[0]==NULL || command[0][0] != '/'){return false;}
+	pid_t pid = fork();
+	int status;
+	
+	if(pid == -1)
+	{
+		return false;
+	}
+	if(0==pid)
+	{
+		if(execv(command[0],command)==-1){exit(EXIT_FAILURE);}
+	}
+	else
+	{
+		waitpid(pid , &status , 0);
+		if(0!=WEXITSTATUS(status)){return false;}
+		return true;
+	}
 /*
  * TODO:
  *   Execute a system command by calling fork, execv(),
@@ -82,8 +106,33 @@ bool do_exec_redirect(const char *outputfile, int count, ...)
     command[count] = NULL;
     // this line is to avoid a compile warning before your implementation is complete
     // and may be removed
-    command[count] = command[count];
+//    command[count] = command[count];
+	int fd =open(outputfile,O_WRONLY|O_TRUNC|O_CREAT,0644);
+	if(fd < 0){perror("open");abort();}
 
+	
+		
+	if(command[0]==NULL || command[0][0] != '/'){return false;}
+	pid_t pid = fork();
+	int status;
+	
+	if(pid == -1)
+	{
+		return false;
+	}
+	if(0==pid)
+	{	
+		if(dup2(fd,1)<0){perror("dup2"); abort();}
+		close(fd);
+		if(execv(command[0],command)==-1){exit(EXIT_FAILURE);}
+		perror("execvp"); abort();
+	}
+	else
+	{
+		waitpid(pid , &status , 0);
+		if(0!=WEXITSTATUS(status)){return false;}
+		return true;
+	}
 
 /*
  * TODO
