@@ -19,7 +19,7 @@ jobs:
 
     full-test:
 
-        container: cuaesd/aesd-autotest:24-assignment2
+        container: cuaesd/aesd-autotest:24-assignment3
         runs-on: ubuntu-latest
 
         steps:
