@@ -98,8 +98,8 @@ mknod console c 5 1
 # TODO: Copy the finder related scripts and executables to the /home directory
 # on the target rootfs
 touch ${OUTDIR}/rootfs/init
-chmod +x ${OUTDIR}/rootfs/init
 echo -e '#!/bin/sh\nmount -t proc none /proc\nmount -t sysfs none /sys\nexec /bin/sh\n' >> ${OUTDIR}/rootfs/init
+chmod 777 ${OUTDIR}/rootfs/init
 cp ${GIT_ROOT}/finder-app/{writer.c,writer.sh,start-qemu-app.sh,start-qemu-terminal.sh,Makefile,finder-test.sh,finder.sh,autorun-qemu.sh} ${OUTDIR}/rootfs/home/
 mkdir -p ${OUTDIR}/rootfs/home/conf
 cp ${GIT_ROOT}/finder-app/conf/* ${OUTDIR}/rootfs/home/conf/
