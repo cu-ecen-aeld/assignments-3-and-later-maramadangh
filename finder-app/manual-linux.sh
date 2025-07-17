@@ -22,8 +22,6 @@ else
 	OUTDIR=$1
 	echo "Using passed directory ${OUTDIR} for output"
 fi
-apt install libc6-dev -y
-echo $(find / -iname "ld-linux-aarch64.so.1" -print -quit)
 mkdir -p ${OUTDIR}
 cd "$OUTDIR"
 mkdir -p rootfs
@@ -84,11 +82,10 @@ echo "Library dependencies"
 cd ${OUTDIR}
 #${CROSS_COMPILE}readelf -a /bin/busybox | grep "program interpreter"
 #${CROSS_COMPILE}readelf -a /bin/busybox | grep "Shared library"
-#apt install libc6:arm64
-cp $(find / -iname "ld-linux-aarch64.so.1" -print -quit) ${OUTDIR}/rootfs/lib
-cp $(find / -iname "libresolv.so.2" -print -quit) ${OUTDIR}/rootfs/lib64
-cp $(find / -iname "libc.so.6" -print -quit) ${OUTDIR}/rootfs/lib64
-cp $(find / -iname "libm.so.6" -print -quit) ${OUTDIR}/rootfs/lib64
+find / -iname "ld-linux-aarch64.so.1" | head -n 1 | xargs -I{} cp {} ${OUTDIR}/rootfs/lib
+find / -iname "libresolv.so.2" | head -n 1 | xargs -I{} cp {} ${OUTDIR}/rootfs/lib64
+find / -iname "libc.so.6" | head -n 1 | xargs -I{} cp {} ${OUTDIR}/rootfs/lib64
+find / -iname "libm.so.6" | head -n 1 | xargs -I{} cp {} ${OUTDIR}/rootfs/lib64
 # TODO: Add library dependencies to rootfs
 
 # TODO: Make device nodes
