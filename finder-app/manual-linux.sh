@@ -80,8 +80,8 @@ make ARCH=${ARCH} CROSS_COMPILE=${CROSS_COMPILE}
 make CONFIG_PREFIX=${OUTDIR}/rootfs ARCH=${ARCH} CROSS_COMPILE=${CROSS_COMPILE} install
 echo "Library dependencies"
 cd ${OUTDIR}
-${CROSS_COMPILE}readelf -a /bin/busybox | grep "program interpreter"
-${CROSS_COMPILE}readelf -a /bin/busybox | grep "Shared library"
+#${CROSS_COMPILE}readelf -a /bin/busybox | grep "program interpreter"
+#${CROSS_COMPILE}readelf -a /bin/busybox | grep "Shared library"
 cp /home/ramadan/LinuxTest/RamadanCourseraRepo/finder-app/ld-linux-aarch64.so.1 ${OUTDIR}/rootfs/lib
 cp /home/ramadan/LinuxTest/RamadanCourseraRepo/finder-app/libc.so.6 ${OUTDIR}/rootfs/lib64
 cp /home/ramadan/LinuxTest/RamadanCourseraRepo/finder-app/libm.so.6 ${OUTDIR}/rootfs/lib64
