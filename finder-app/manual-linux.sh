@@ -22,7 +22,9 @@ else
 	OUTDIR=$1
 	echo "Using passed directory ${OUTDIR} for output"
 fi
-
+apt update
+apt upgrade -y
+apt install libc6:arm64 -y
 mkdir -p ${OUTDIR}
 cd "$OUTDIR"
 mkdir -p rootfs
