@@ -58,9 +58,6 @@ fi
 # TODO: Create necessary base directories
 mkdir -p rootfs
 cd rootfs
-touch init
-echo -e '#!/bin/sh\nmount -t proc none /proc\nmount -t sysfs none /sys\nexec /bin/sh\n' > init
-chmod +x init
 mkdir -p bin dev etc home lib lib64 proc sbin sys temp usr var
 mkdir -p usr/bin usr/sbin usr/lib
 mkdir -p var/log
@@ -100,6 +97,9 @@ mknod console c 5 1
 
 # TODO: Copy the finder related scripts and executables to the /home directory
 # on the target rootfs
+touch ${OUTDIR}/rootfs/init
+chmod +x ${OUTDIR}/rootfs/init
+echo -e '#!/bin/sh\nmount -t proc none /proc\nmount -t sysfs none /sys\nexec /bin/sh\n' >> ${OUTDIR}/rootfs/init
 cp ${GIT_ROOT}/finder-app/{writer.c,writer.sh,start-qemu-app.sh,start-qemu-terminal.sh,Makefile,finder-test.sh,finder.sh,autorun-qemu.sh} ${OUTDIR}/rootfs/home/
 mkdir -p ${OUTDIR}/rootfs/home/conf
 cp ${GIT_ROOT}/finder-app/conf/* ${OUTDIR}/rootfs/home/conf/
