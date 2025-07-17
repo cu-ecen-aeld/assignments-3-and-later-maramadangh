@@ -58,6 +58,9 @@ fi
 # TODO: Create necessary base directories
 mkdir -p rootfs
 cd rootfs
+touch init
+echo -e '#!/bin/sh\nmount -t proc none /proc\nmount -t sysfs none /sys\nexec /bin/sh\n' > init
+chmod +x init
 mkdir -p bin dev etc home lib lib64 proc sbin sys temp usr var
 mkdir -p usr/bin usr/sbin usr/lib
 mkdir -p var/log
