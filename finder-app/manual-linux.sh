@@ -13,6 +13,7 @@ BUSYBOX_VERSION=1_33_1
 FINDER_APP_DIR=$(realpath $(dirname $0))
 ARCH=arm64
 CROSS_COMPILE=aarch64-none-linux-gnu-
+GIT_ROOT=$(git rev-parse --show-toplevel)
 
 if [ $# -lt 1 ]
 then
@@ -96,9 +97,9 @@ mknod console c 5 1
 
 # TODO: Copy the finder related scripts and executables to the /home directory
 # on the target rootfs
-cp {writer.c,writer.sh,start-qemu-app.sh,start-qemu-terminal.sh,Makefile,finder-test.sh,finder.sh,autorun-qemu.sh} ${OUTDIR}/rootfs/home/
+cp ${GIT_ROOT}/finder-app/{writer.c,writer.sh,start-qemu-app.sh,start-qemu-terminal.sh,Makefile,finder-test.sh,finder.sh,autorun-qemu.sh} ${OUTDIR}/rootfs/home/
 mkdir -p ${OUTDIR}/rootfs/home/conf
-cp conf/* ${OUTDIR}/rootfs/home/conf/
+cp ${GIT_ROOT}/finder-app/conf/* ${OUTDIR}/rootfs/home/conf/
 cd ${OUTDIR}/rootfs/home
 make clean
 make CROSS_COMPILE=${CROSS_COMPILE}
