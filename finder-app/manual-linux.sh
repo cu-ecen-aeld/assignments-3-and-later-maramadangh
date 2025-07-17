@@ -83,11 +83,11 @@ echo "Library dependencies"
 cd ${OUTDIR}
 #${CROSS_COMPILE}readelf -a /bin/busybox | grep "program interpreter"
 #${CROSS_COMPILE}readelf -a /bin/busybox | grep "Shared library"
-TOOLCHAIN=$(find /home/ -type d -iname "arm-gnu-toolchain*none-linux-gnu" -print -quit)
-cp ${TOOLCHAIN}/lib/ld-linux-aarch64.so.1 ${OUTDIR}/rootfs/lib
-cp ${TOOLCHAIN}/lib64/libc.so.6 ${OUTDIR}/rootfs/lib64
-cp ${TOOLCHAIN}/lib64/libm.so.6 ${OUTDIR}/rootfs/lib64
-cp ${TOOLCHAIN}/lib64/libresolv.so.2 ${OUTDIR}/rootfs/lib64
+apt install libc6:arm64
+cp $(find / -iname "ld-linux-aarch64.so.1" -print -quit) ${OUTDIR}/rootfs/lib
+cp $(find / -iname "libresolv.so.2" -print -quit) ${OUTDIR}/rootfs/lib64
+cp $(find / -iname "libc.so.6" -print -quit) ${OUTDIR}/rootfs/lib64
+cp $(find / -iname "libm.so.6" -print -quit) ${OUTDIR}/rootfs/lib64
 # TODO: Add library dependencies to rootfs
 
 # TODO: Make device nodes
