@@ -99,9 +99,9 @@ touch ${OUTDIR}/rootfs/init
 echo -e '#!/bin/sh\nmount -t proc none /proc\nmount -t sysfs none /sys\nexec /bin/sh\n' >> ${OUTDIR}/rootfs/init
 chmod 777 ${OUTDIR}/rootfs/init
 cp ${GIT_ROOT}/finder-app/{writer.c,writer.sh,start-qemu-app.sh,start-qemu-terminal.sh,Makefile,finder-test.sh,finder.sh,autorun-qemu.sh} ${OUTDIR}/rootfs/home/
-echo result of coping is $?
-find / -type f -iname "finder-test.sh" -exec cp {} ${OUTDIR}/rootfs/home  \; -quit
-chmod 777 finder-test.sh
+#echo result of coping is $?
+#find / -type f -iname "finder-test.sh" -exec cp {} ${OUTDIR}/rootfs/home  \; -quit
+chmod 777 ${OUTDIR}/rootfs/home/finder-test.sh
 mkdir -p ${OUTDIR}/rootfs/home/conf
 cp ${GIT_ROOT}/finder-app/conf/* ${OUTDIR}/rootfs/home/conf/
 cd ${OUTDIR}/rootfs/home
