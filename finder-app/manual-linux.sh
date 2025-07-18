@@ -50,8 +50,6 @@ cd "$OUTDIR"
 if [ -d "${OUTDIR}/rootfs" ]
 then
 	echo "Deleting rootfs directory at ${OUTDIR}/rootfs and starting over"
-        ls -lah ${OUTDIR}/rootfs
-	ls -lah ${OUTDIR}/rootfs/home
         sudo rm  -rf ${OUTDIR}/rootfs
 fi
 
