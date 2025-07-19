@@ -84,7 +84,7 @@ cd ${OUTDIR}
 find /usr/lib -type f -iname "libresolv.so.2" -exec cp {} ${OUTDIR}/rootfs/lib64  \; -quit
 find /usr/lib -type f -iname "libc.so.6" -exec cp {} ${OUTDIR}/rootfs/lib64  \; -quit
 find /usr/lib -type f -iname "libm.so.6" -exec cp {} ${OUTDIR}/rootfs/lib64  \; -quit
-find /usr/lib -type f -iname "ld-linux.aarch64.so.1" -exec cp {} ${OUTDIR}/rootfs/lib  \; -quit
+find /usr/lib -type f -iname "ld-linux-aarch64.so.1" -exec cp {} ${OUTDIR}/rootfs/lib  \; -quit
 # TODO: Add library dependencies to rootfs
 
 # TODO: Make device nodes
