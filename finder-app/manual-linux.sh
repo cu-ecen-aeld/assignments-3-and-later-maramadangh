@@ -81,10 +81,10 @@ echo "Library dependencies"
 cd ${OUTDIR}
 #${CROSS_COMPILE}readelf -a /bin/busybox | grep "program interpreter"
 #${CROSS_COMPILE}readelf -a /bin/busybox | grep "Shared library"
-find /usr/lib/aarch64-linux-gnu -type f -iname "libresolv.so.2" -exec cp {} ${OUTDIR}/rootfs/lib64  \; -quit
-find /usr/lib/aarch64-linux-gnu -type f -iname "libc.so.6" -exec cp {} ${OUTDIR}/rootfs/lib64  \; -quit
-find /usr/lib/aarch64-linux-gnu -type f -iname "libm.so.6" -exec cp {} ${OUTDIR}/rootfs/lib64  \; -quit
-find /usr/lib/aarch64-linux-gnu -type f -iname "ld-linux-aarch64.so.1" -exec cp {} ${OUTDIR}/rootfs/lib  \; -quit
+find / -path '*arch64-none-linux*' -type f -iname "libresolv.so.2" -exec cp {} ${OUTDIR}/rootfs/lib64  \; -quit
+find / -path '*arch64-none-linux*' -type f -iname "libc.so.6" -exec cp {} ${OUTDIR}/rootfs/lib64  \; -quit
+find / -path '*arch64-none-linux*' -type f -iname "libm.so.6" -exec cp {} ${OUTDIR}/rootfs/lib64  \; -quit
+find / -path '*arch64-none-linux*' -type f -iname "ld-linux-aarch64.so.1" -exec cp {} ${OUTDIR}/rootfs/lib  \; -quit
 # TODO: Add library dependencies to rootfs
 
 # TODO: Make device nodes
