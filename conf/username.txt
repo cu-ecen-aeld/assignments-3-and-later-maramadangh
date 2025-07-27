@@ -1,1 +1,6 @@
+<<<<<<< HEAD
 maramadangh
+||||||| empty tree
+=======
+aesd-private-repo
+>>>>>>> buildroot-assignments-base/master

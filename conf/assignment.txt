@@ -1,1 +1,6 @@
+<<<<<<< HEAD
 assignment4
+||||||| empty tree
+=======
+assignment4-buildroot
+>>>>>>> buildroot-assignments-base/master

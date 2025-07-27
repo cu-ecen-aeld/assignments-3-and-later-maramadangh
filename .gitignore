@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 *.o
 writer
 Test_*_Runner.c
@@ -6,3 +7,10 @@ crosstool-ng
 aesd-build
 .vscode/
 test.sh.log
+||||||| empty tree
+=======
+*.o
+build/
+.vscode/
+*.log
+>>>>>>> buildroot-assignments-base/master
